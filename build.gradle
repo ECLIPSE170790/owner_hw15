@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+def selenideVersion = "5.24.0",
+    junitVersion = "5.8.1"
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:$selenideVersion",
+            "org.seleniumhq.selenium:selenium-java:3.141.59",
+            "org.assertj:assertj-core:3.21.0",
+            "org.aeonbits.owner:owner:1.0.4",
+            "org.junit.jupiter:junit-jupiter-api:$junitVersion")
+
+    testRuntimeOnly(
+            "org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
