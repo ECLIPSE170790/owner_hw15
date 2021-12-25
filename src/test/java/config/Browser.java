@@ -7,14 +7,14 @@ import org.aeonbits.owner.Config;
 })
 public interface Browser extends Config {
 
+    @Key("environment")
+    String environment();
+
     @Key("browserName")
     String browserName();
 
     @Key("browserVersion")
     String browserVersion();
-
-    @Key("environment")
-    String Environment();
 
     @Key("URL")
     String URL();

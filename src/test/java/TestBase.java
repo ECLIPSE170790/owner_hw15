@@ -22,9 +22,9 @@ public class TestBase {
             Configuration.browserVersion = config.browserVersion();
 
 
-            if (config.Environment() == "remote") {
+          //  if (config.environment() == "remote") {
                 Configuration.remote = config.URL();
-            }
+          //  }
         }
     }
 }
