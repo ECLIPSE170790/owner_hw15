@@ -8,18 +8,21 @@ public class TestBase {
     @BeforeAll
     static void setupBeforeAll() {
 
-            ConfigHelper config = new ConfigHelper();
+        System.setProperty("env", "remote");
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
 
-            if (config.environment().equals("remote")) {
-                Configuration.remote = config.URL();
-            }
+        Configuration.browser = ConfigHelper.browser.getBrowserName();
+        Configuration.browserVersion = ConfigHelper.browser.getBrowserVersion();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", false);
 
-            capabilities.setCapability("browserName", config.browserName());
-            capabilities.setCapability("browserVersion", config.browserVersion());
-            capabilities.setCapability("enableVNC", true);
-            capabilities.setCapability("enableVideo", true);
+        if (System.getProperties().containsValue("remote")) {
+            Configuration.remote = ConfigHelper.browser.getUrl();
+
+        }
+
+        Configuration.browserCapabilities = capabilities;
 
     }
 }

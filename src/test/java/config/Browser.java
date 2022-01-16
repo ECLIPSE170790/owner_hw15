@@ -2,21 +2,20 @@ package config;
 
 import org.aeonbits.owner.Config;
 
+@Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:${environment}.properties"
+        "system:properties",
+        "classpath:${env}.properties"
 })
 public interface Browser extends Config {
 
-    @Key("environment")
-    String environment();
-
     @Key("browserName")
-    String browserName();
+    String getBrowserName();
 
     @Key("browserVersion")
-    String browserVersion();
+    String getBrowserVersion();
 
-    @Key("URL")
-    String URL();
+    @Key("url")
+    String getUrl();
 
 }
